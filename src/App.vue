@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld/>
+    <Cesium/>
   </div>
+  
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import Cesium from './components/Cesium.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+    Cesium
+}
 }
 </script>
 

@@ -43,10 +43,22 @@
             <div class="all">
              <div class="left">
                 <span>已选择<span style="color:#1172f1">0</span>项</span>
-                <span style="color:#1172f1;margin-left: 30px;">清空</span>
+                <span style="color:#1172f1;margin-left: 30px;">
+                  <el-button style="border:none;background-color:#e6f7ff; color:#1172f1" >清空</el-button>
+                </span>
              </div>
              <div class="right">
-                <span style="margin-right: 20px;"><img src="../assets/刷新.png" style="width:15px; height:15px;position:relative; top:1px"/>刷新</span>
+                <span style="margin-right: 20px;">
+                  <!-- <img src="../assets/刷新.png" style="width:15px; height:15px;position:relative; top:1px"/>刷新 -->
+                  <el-button
+                     style="border:none;background-color:#e6f7ff; color:#1172f1"
+                     type="primary"
+                     @click="openFullScreen1"
+                     v-loading.fullscreen.lock="fullscreenLoading"
+                     icon="el-icon-refresh-right">
+                      刷新
+                  </el-button>
+                </span>
                 <span><img src="../assets/符号-自定义列.png" style="width:15px; height:15px;position:relative; top:1px"/>自定义列</span>
             </div>
            </div>
@@ -107,6 +119,7 @@
         :width="width"
         :height="height"
         center>
+        <el-button style="border:none;background-color:white; color:#1172f1;float: right; position: relative;left:20px; bottom: 70px;" icon="el-icon-close" @click="quxiao()"></el-button>
         <el-form ref="form" :model="form" label-width="80px" style="position:relative;left:80px">
                <el-form-item label="姓名:" style="margin-top: 5px; margin-bottom:35px;width:600px">
                  <el-input v-model="form.name" placeholder="请输入姓名"></el-input>
@@ -168,9 +181,11 @@ export default {
   name: 'HelloWorld',
   data(){
       return{
+
+        fullscreenLoading: false,
        
         tittle:"编辑",
-        isShow:true,
+        isShow:false,
         width:"800px",
         height:"750px",
         form: {
@@ -187,7 +202,7 @@ export default {
         kword: '上海市普陀区金沙江路 1518 弄',
         gender:'',
         age:15,
-        bday:'3.23',
+        bday:'2002-03-28',
         resume:'打卡',
         email:'aaa@qq.com'
       },{
@@ -196,7 +211,7 @@ export default {
         kword: '广东中山',
         gender:'',
         age:25,
-        bday:'3.13',
+        bday:'2000-11-3',
         resume:'打卡',
         email:'bbb@qq.com'
       }],
@@ -242,12 +257,24 @@ export default {
            this.isShow== !this.isShow;
            console.log(this.isShow);
       },
+
       sumbim(){
           this.isShow = false
-        },
-        quxiao(){
+      },
+      
+      quxiao(){
           this.isShow = false
-        }
+        },
+
+        //加载动画
+      openFullScreen1() {
+        this.fullscreenLoading = true;
+        setTimeout(() => {
+          this.fullscreenLoading = false;
+        }, 2000);
+       },
+
+      
 
 
     },
